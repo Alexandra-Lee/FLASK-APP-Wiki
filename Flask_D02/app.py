@@ -17,7 +17,7 @@ app = Flask(__name__,)
 Bootstrap(app)
 app.config['SECRET_KEY'] = 'Thisisssecret!'
 app.config['SESSION_TYPE'] = 'sqlalchemy'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///Users/alexandralee/Rendu/Coding-Academy/Python-Flask-API-articles/Flask_D02/LegalTech.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///Users/alexandralee/Rendu/Coding-Academy/FLASK-APP-Wiki/Flask_D02/LegalTech.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 Session(app)
@@ -95,6 +95,7 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
             if check_password_hash(user.password, form.password.data):
+                
                 return redirect(url_for('articles'))
         return '<h1>Invalid username or password</h1>'
     return render_template('login.html', form=form)
